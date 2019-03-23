@@ -1,0 +1,18 @@
+https://akveo.github.io/nebular/docs/components/input/overview#nbinputdirective
+
+https://github.com/akveo/ng2-smart-table/tree/master/src/app/pages/examples
+
+dialog
+https://github.com/akveo/ngx-admin/blob/master/src/app/pages/modal-overlays/dialog/showcase-dialog/showcase-dialog.component.ts
+
+window
+https://github.com/akveo/ngx-admin/blob/master/src/app/pages/modal-overlays/window/window-form/window-form.component.ts
+
+pass param from dialog to window
+https://akveo.github.io/nebular/docs/components/dialog/overview#nbdialogservice
+https://github.com/akveo/ngx-admin/blob/master/src/app/pages/modal-overlays/dialog/dialog-name-prompt/dialog-name-prompt.component.ts
+
+filter list from dropdown list
+https://www.talkingdotnet.com/bind-select-dropdown-list-in-angular-4-and-5/
+
+git remote add origin https://github.com/chadirahme/habib-api.git
