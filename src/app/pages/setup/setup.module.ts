@@ -6,7 +6,7 @@ import {EmployeesListComponent} from "./employees-list/employees-list.component"
 import { VendorsListComponent } from './vendors-list/vendors-list.component';
 import { ProfessionsListComponent } from './professions-list/professions-list.component';
 import {Ng2SmartTableModule} from "ng2-smart-table";
-import {NbDialogModule, NbWindowModule} from "@nebular/theme";
+import {NbDialogModule, NbWindowModule, NbDatepickerModule} from "@nebular/theme";
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 const COMPONENTS = [
@@ -20,12 +20,14 @@ const MODULES = [
     ThemeModule,
     SetupRoutingModule,
     Ng2SmartTableModule,
+    // NbMomentDateModule,
     //TreeModule,
     //Ng2SmartTableModule,
     //ToasterModule.forRoot(),
    // ModalOverlaysRoutingModule,
     NbDialogModule.forChild(),
     NbWindowModule.forChild(),
+    NbDatepickerModule.forRoot(),
 ];
 
 @NgModule({

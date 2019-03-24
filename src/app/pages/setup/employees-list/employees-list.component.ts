@@ -3,7 +3,6 @@ import {ApiAuth} from "../../../@core/services/api.auth";
 import {ListValueModel} from "../../../@core/domains/listvalue.model";
 import {LocalDataSource} from "ng2-smart-table";
 import {NbWindowService, NbDialogService} from "@nebular/theme";
-import {VendorsListComponent} from "../vendors-list/vendors-list.component";
 import {EditEmployeeComponent} from "../edit-employee/edit-employee.component";
 
 @Component({
@@ -51,6 +50,14 @@ export class EmployeesListComponent implements OnInit {
         title: 'Last Name',
         type: 'string',
       },
+      phone: {
+        title: 'Phone',
+        type: 'string',
+      },
+      email: {
+        title: 'Email',
+        type: 'string',
+      },
       profession: {
         title: 'profession',
         type: 'string',
@@ -72,8 +79,9 @@ export class EmployeesListComponent implements OnInit {
     },
   };
 
-  constructor(private authService: ApiAuth,private windowService: NbWindowService,
-              private dialogService: NbDialogService) { }
+
+  constructor(private authService: ApiAuth,private dialogService: NbDialogService
+              ) { }
 
   ngOnInit() {
     this.loadData();
@@ -89,7 +97,7 @@ export class EmployeesListComponent implements OnInit {
         //this.dataSource.paginator = this.paginator;
         // this.fileUploads =data;
         for (const car of data) {
-          console.log(car);
+         // console.log(car);
         }
       });
 
@@ -126,20 +134,23 @@ export class EmployeesListComponent implements OnInit {
   }
   checkResult(msg){
     console.log(msg);
+    this.loadData();
   }
 
+  names: string[] = [];
   editRow(event) {
    // console.log('event: ', event);
    // this.windowService.open(VendorsListComponent, { title: `Window` });
 
     //this.windowService.open(EditEmployeeComponent, { title: `Window` });
 
-    this.dialogService.open(VendorsListComponent, {
+    this.dialogService.open(EditEmployeeComponent, {
       context: {
         title: 'Edit Employee: '+ event.data.firstName,
         employee: event.data,
       },
-    }).onClose.subscribe(name => this.result && console.log(name));
+    }).onClose.subscribe (name => name && this.checkResult(name));
+    //(name => this.result && console.log(name));
 
   }
 

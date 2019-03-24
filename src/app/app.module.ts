@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ApiAuth} from "./@core/services/api.auth";
-import {NbWindowModule, NbWindowService} from "@nebular/theme";
+import {NbWindowModule, NbWindowService, NbDatepickerModule, NbDialogService} from "@nebular/theme";
 import {VendorsListComponent} from "./pages/setup/vendors-list/vendors-list.component";
 
 @NgModule({
@@ -26,13 +26,14 @@ import {VendorsListComponent} from "./pages/setup/vendors-list/vendors-list.comp
     HttpClientModule,
     AppRoutingModule,
 
-    NgbModule.forRoot(),
+    //NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    NbWindowModule.forRoot(),
+    //NbWindowModule.forRoot(),
+
   ],
   bootstrap: [AppComponent],
-  providers: [ApiAuth,NbWindowService,
+  providers: [ApiAuth,NbWindowService,NbDialogService,
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
   //entryComponents: [VendorsListComponent]

@@ -1,5 +1,8 @@
 //@import '../../../../@theme/styles/themes';
-
+nb-card {
+  max-width: 600px;
+  max-height: 500px;
+}
 
   /deep/ .form {
     display: flex;

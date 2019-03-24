@@ -7,12 +7,13 @@ import {ApiAuth} from "../../../@core/services/api.auth";
   templateUrl: './vendors-list.component.html',
   styleUrls: ['./vendors-list.component.scss']
 })
-export class VendorsListComponent implements OnInit {
+export class VendorsListComponent implements OnInit{
 
   @Input() title: string;
   @Input() employee: any;
   listProfessionsValues: any[];
   selectedProfession: any;
+  dateValue: Date;
 
   constructor(protected ref: NbDialogRef<VendorsListComponent>,
               private authService: ApiAuth) {
@@ -21,22 +22,27 @@ export class VendorsListComponent implements OnInit {
   ngOnInit() {
     this.selectedProfession= this.employee.profession.id;//{"id":1,"listId":1,"listValue":"CHEF"};
     this.loadProfessionsData();
+    if(this.employee.startdate==null)
+    this.dateValue = new Date();
+    else
+    this.dateValue= this.employee.startdate;
   }
 
   dismiss() {
-    this.ref.close();
+    //this.ref.close();
   }
 
   name: string;
   submit() {
 
-    this.name="sdsds";
+    //this.name="sdsds";
     this.employee.profession.id= this.selectedProfession;
+    this.employee.startdate=this.dateValue;
     console.log(this.employee);
     this.authService.saveEmployee(this.employee).subscribe(data => {
       console.log(data);
-      alert("Employee saved..");
-      this.ref.close(this.name);
+      //alert("Employee saved..");
+      this.ref.close("saved");
     });
 
   }
