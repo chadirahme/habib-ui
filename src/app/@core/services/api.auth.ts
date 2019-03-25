@@ -12,6 +12,23 @@ export class ApiAuth {
     // baseUrl: string ='http://localhost:8091/api/';
     baseUrl: string = 'http://localhost:8090/';
 
+    /**
+     * check for expiration and if token is still existing or not
+     * @return {boolean}
+     */
+    isAuthenticated(): boolean {
+        return localStorage.getItem('token') != null && !this.isTokenExpired();
+    }
+    // simulate jwt token is valid
+    // https://github.com/theo4u/angular4-auth/blob/master/src/app/helpers/jwt-helper.ts
+    isTokenExpired(): boolean {
+        return false;
+    }
+
+    getIsAuthenticated(user: any):Observable<any>{
+        return this.http.post<ApiResponse>(this.baseUrl+'rest-employees/getLoginUser',user);
+    }
+
     getProfessionsList(): Observable<ApiResponse> {
         return this.http.get<ApiResponse>(this.baseUrl+'listvalues/allFeildsValuesById/1');
     }

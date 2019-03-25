@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ngx-header',
@@ -20,12 +21,15 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,private router: Router,) {
   }
 
   ngOnInit() {
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.nick);
+    this.menuService.onItemClick().subscribe(( event ) => {
+      this.onItemSelection(event.item.title);
+    })
   }
 
   toggleSidebar(): boolean {
@@ -47,4 +51,18 @@ export class HeaderComponent implements OnInit {
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
   }
+
+  onItemSelection( title ) {
+    if ( title === 'Log out' ) {
+      // Do something on Log out
+      console.log('Log out Clicked ');
+      localStorage.removeItem('token');
+      this.router.navigate(['auth/login']);
+
+    } else if ( title === 'Profile' ) {
+      // Do something on Profile
+      console.log('Profile Clicked ')
+    }
+  }
+
 }

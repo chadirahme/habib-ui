@@ -16,3 +16,9 @@ filter list from dropdown list
 https://www.talkingdotnet.com/bind-select-dropdown-list-in-angular-4-and-5/
 
 git remote add origin https://github.com/chadirahme/habib-api.git
+
+
+https://github.com/theo4u/AuthGuard/blob/master/src/app/guards/auth-guard.service.ts
+
+https://github.com/akveo/nebular/blob/master/src/framework/auth/components/login/login.component.ts
+
