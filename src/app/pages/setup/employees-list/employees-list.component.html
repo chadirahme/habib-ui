@@ -1,12 +1,12 @@
 <p>
-  employees-list works!
+  Employees List
 </p>
 
 <nb-card-body>
   <ng2-smart-table [settings]="settings" [source]="source"
-                   (deleteConfirm)="onDeleteConfirm($event)"
+                   (delete)="onDeleteConfirm($event)"
                    (editConfirm)="onSaveConfirm($event)"
-                   (createConfirm)="onCreateConfirm($event)"
+                   (create)="createRow($event)"
                    (edit)="editRow($event)">
   </ng2-smart-table>
 </nb-card-body>

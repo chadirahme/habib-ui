@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiAuth} from "../../../@core/services/api.auth";
-import {ListValueModel} from "../../../@core/domains/listvalue.model";
 import {LocalDataSource} from "ng2-smart-table";
-import {NbWindowService, NbDialogService} from "@nebular/theme";
-import {EditEmployeeComponent} from "../edit-employee/edit-employee.component";
+import {NbDialogService} from "@nebular/theme";
+import {ApiAuth} from "../../../@core/services/api.auth";
+import {EditSupplierComponent} from "../edit-supplier/edit-supplier.component";
 
 @Component({
-  selector: 'employees-list',
-  templateUrl: './employees-list.component.html',
-  styleUrls: ['./employees-list.component.scss']
+  selector: 'suppliers-list',
+  templateUrl: './suppliers-list.component.html',
+  styleUrls: ['./suppliers-list.component.scss']
 })
-export class EmployeesListComponent implements OnInit {
-
-  listValues: any[];
-  item:ListValueModel;
-  result: string;
+export class SuppliersListComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
   settings = {
@@ -36,37 +31,30 @@ export class EmployeesListComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      employeeid: {
+      supplierid: {
         title: 'ID',
         type: 'number',
         editable: false,
         addable: false,
       },
-      firstName: {
-        title: 'First Name',
-        type: 'string',
-      },
-      lastName: {
-        title: 'Last Name',
+      suppliername: {
+        title: 'Supplier Name',
         type: 'string',
       },
       phone: {
         title: 'Phone',
         type: 'string',
       },
+      mobile: {
+        title: 'Mobile',
+        type: 'string',
+      },
       email: {
         title: 'Email',
         type: 'string',
       },
-      profession: {
-        title: 'profession',
-        type: 'string',
-        valuePrepareFunction: (profession) => {
-          return profession.listValue;
-        }
-      },
-      status: {
-        title: 'Status',
+      description: {
+        title: 'Description',
         type: 'string',
       },
     },
@@ -79,9 +67,8 @@ export class EmployeesListComponent implements OnInit {
     },
   };
 
-
   constructor(private authService: ApiAuth,private dialogService: NbDialogService
-              ) { }
+  ) { }
 
   ngOnInit() {
     this.loadData();
@@ -90,15 +77,8 @@ export class EmployeesListComponent implements OnInit {
   loadData(): void {
     try
     {
-      this.authService.getEmployeeList().subscribe(data => {
-        this.listValues=data;
+      this.authService.getSuppliersList().subscribe(data => {
         this.source.load(data);
-        // this.dataSource = new MatTableDataSource(data);
-        //this.dataSource.paginator = this.paginator;
-        // this.fileUploads =data;
-        for (const car of data) {
-         // console.log(car);
-        }
       });
 
     }
@@ -107,12 +87,26 @@ export class EmployeesListComponent implements OnInit {
     }
   }
 
+  onDelete(event) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.authService.deleteSupplier(event.data).subscribe(data => {
+        console.log(data);
+        //alert("Employee saved..");
+        this.loadData();
+      });
+
+    } else {
+     // event.confirm.reject();
+    }
+  }
+
   onDeleteConfirm(event) {
+    console.log("Delete Event In Console")
     console.log(event);
     if (window.confirm('Are you sure you want to delete?')) {
-      //event.resolve();
+      event.confirm.resolve();
     } else {
-      //event.reject();
+      event.confirm.reject();
     }
   }
 
@@ -138,31 +132,23 @@ export class EmployeesListComponent implements OnInit {
     this.loadData();
   }
 
-  names: string[] = [];
   editRow(event) {
-    console.log('event: ', event.data);
-   // this.windowService.open(VendorsListComponent, { title: `Window` });
-
-    //this.windowService.open(EditEmployeeComponent, { title: `Window` });
-
-    this.dialogService.open(EditEmployeeComponent, {
+    this.dialogService.open(EditSupplierComponent, {
       context: {
-        title: 'Edit Employee: '+ event.data.firstName,
-        employee: event.data,
+        title: 'Edit Supplier: '+ event.data.suppliername,
+        supplier: event.data,
       },
     }).onClose.subscribe (name => name && this.checkResult(name));
     //(name => this.result && console.log(name));
-
   }
 
   createRow(event: any) {
-   // console.log('on add event: ', event);
-    this.dialogService.open(EditEmployeeComponent, {
+    // console.log('on add event: ', event);
+    this.dialogService.open(EditSupplierComponent, {
       context: {
-        title: 'Add New Employee',
-        employee: null,
+        title: 'Add New Supplier',
+        supplier: null,
       },
     }).onClose.subscribe (name => name && this.checkResult(name));
   }
-
 }

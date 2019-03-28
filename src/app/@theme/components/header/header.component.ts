@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
 
   user: any;
+  userName:string;
 
   userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.nick);
+    this.userName=localStorage.getItem('username');
     this.menuService.onItemClick().subscribe(( event ) => {
       this.onItemSelection(event.item.title);
     })

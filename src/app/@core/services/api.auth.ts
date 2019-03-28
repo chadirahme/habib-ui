@@ -43,4 +43,24 @@ export class ApiAuth {
     saveEmployee(employee: any): Observable<any> {
         return this.http.post<any>(this.baseUrl+'rest-employees/save/',employee);
     }
+
+    getSuppliersList(): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl+'rest-suppliers/all');
+    }
+
+    saveSupplier(supplier: any): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'rest-suppliers/save/',supplier);
+    }
+    deleteSupplier(supplier: any): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'rest-suppliers/delete/',supplier);
+    }
+
+    //rest-payments
+    getPaymentsList(): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl+'rest-payments/all');
+    }
+    savePayment(payment: any): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'rest-payments/save/',payment);
+    }
+
 }

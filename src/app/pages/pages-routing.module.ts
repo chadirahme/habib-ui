@@ -16,6 +16,10 @@ const routes: Routes = [{
       path: 'setup',
       loadChildren: './setup/setup.module#SetupModule',
     },
+    {
+      path: 'accounting',
+      loadChildren: './accounting/accounting.module#AccountingModule',
+    },
 
     {
       path: '',

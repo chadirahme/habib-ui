@@ -22,3 +22,10 @@ https://github.com/theo4u/AuthGuard/blob/master/src/app/guards/auth-guard.servic
 
 https://github.com/akveo/nebular/blob/master/src/framework/auth/components/login/login.component.ts
 
+
+
+godaddy DNS manage
+ns69.domaincontrol.com
+ns70.domaincontrol.com
+
+point to ns1.linode.com

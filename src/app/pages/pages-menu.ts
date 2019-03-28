@@ -24,8 +24,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/setup/employees-list',
       },
       {
-        title: 'Vendors List',
-        link: '/pages/setup/vendors-list',
+        title: 'Suppliers List',
+        link: '/pages/setup/suppliers-list',
+      },
+    ]
+  },
+
+  {
+    title: 'Accounting',
+    icon: 'nb-list',
+    children: [
+      // {
+      //   title: 'Employee Payments',
+      //   link: '/pages/setup/professions-list',
+      // },
+      {
+        title: 'Suppliers Payments',
+        link: '/pages/accounting/payments-supplier',
       },
     ]
   },

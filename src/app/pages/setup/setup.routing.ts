@@ -4,6 +4,7 @@ import {NgModule} from "@angular/core";
 import {SetupComponent} from "./setup.component";
 import {VendorsListComponent} from "./vendors-list/vendors-list.component";
 import {ProfessionsListComponent} from "./professions-list/professions-list.component";
+import {SuppliersListComponent} from "./suppliers-list/suppliers-list.component";
 
 const routes: Routes = [
     {
@@ -15,8 +16,8 @@ const routes: Routes = [
                 component: EmployeesListComponent,
             },
             {
-                path: 'vendors-list',
-                component: VendorsListComponent,
+                path: 'suppliers-list',
+                component: SuppliersListComponent,
             },
             {
                 path: 'professions-list',

@@ -1,0 +1,69 @@
+<nb-card>
+  <nb-card-header>{{title}}</nb-card-header>
+  <nb-card-body>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="ddlSupplier">Supplier</label>
+          <select class="form-control" [(ngModel)]="selectedSupplier" id="ddlSupplier">
+            <!--<option value="0">--All--</option>-->
+            <option *ngFor="let item of supplierList" [ngValue]="item.supplierid">
+              {{item.suppliername}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+    <div class="form-group">
+    <label for="inputStatus">Paid By</label>
+    <select class="form-control" id="inputStatus" [(ngModel)]="payment.paidby">
+    <option>Visa Card</option>
+    <option>Master Card</option>
+    <option>Cash</option>
+      <option>Cheque</option>
+    </select>
+    </div>
+    </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="inputhourrate">Amount</label>
+          <input [(ngModel)]="payment.amount" type="email" class="form-control" id="inputhourrate" placeholder="Amount"
+                 value="{{payment.amount}}">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="inputStartDate">Payment Date</label>
+          <input  [nbDatepicker]="datepicker" id="inputStartDate" [(ngModel)]="dateValue">
+          <nb-datepicker #datepicker ></nb-datepicker>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="inputdescription">description</label>
+          <textarea shape="round" fullWidth [(ngModel)]="payment.description" type="email"
+                    class="form-control" id="inputdescription" placeholder="Description"
+                    value="{{payment.description}}"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+    </div>
+  </nb-card-body>
+</nb-card>

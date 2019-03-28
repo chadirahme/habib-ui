@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'pages',
     canActivate: [AuthGuard],
     loadChildren: 'app/pages/pages.module#PagesModule' },
+
   {
     path: 'auth',
     component: NbAuthComponent,

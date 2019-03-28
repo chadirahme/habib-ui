@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit{
     this.user=new UserModel();
     this.user.email="";
     this.user.password="";
+    this.user.username="";
   }
 
   login()
@@ -32,16 +33,21 @@ export class LoginComponent implements OnInit{
     console.log(this.user);
     try
     {
+      this.user.username=this.user.email;
       this.authService.getIsAuthenticated(this.user).subscribe(data => {
             console.log(data);
-            if(data.message=='Invalid User')
-              this.errors.push("Invalid User");
+            if(data==null) {//.message=='Invalid User'
+              //console.log(data.message);
+              alert('Invalid User');
+              //this.errors.push("Invalid User");
+            }
             else {
-              localStorage.setItem('token','1212121');
+              localStorage.setItem('token',data.userid);
+              localStorage.setItem('userid',data.userid);
+              localStorage.setItem('username',data.fullname);
               this.router.navigate(['/dashboard']);
             }
       });
-
     }
     catch (e) {
       console.log(e);

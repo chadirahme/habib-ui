@@ -8,6 +8,8 @@ import { ProfessionsListComponent } from './professions-list/professions-list.co
 import {Ng2SmartTableModule} from "ng2-smart-table";
 import {NbDialogModule, NbWindowModule, NbDatepickerModule} from "@nebular/theme";
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
+import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
 
 const COMPONENTS = [
    SetupComponent,
@@ -37,11 +39,13 @@ const MODULES = [
     declarations: [
         ...COMPONENTS,
         EditEmployeeComponent,
+        SuppliersListComponent,
+        EditSupplierComponent,
 
     ],
     providers: [
         //...SERVICES,
     ],
-    entryComponents: [EditEmployeeComponent]
+    entryComponents: [EditEmployeeComponent,EditSupplierComponent]
 })
 export class SetupModule { }

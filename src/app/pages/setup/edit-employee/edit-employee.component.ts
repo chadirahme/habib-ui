@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NbDialogRef} from '@nebular/theme';
 import {ApiAuth} from "../../../@core/services/api.auth";
+import {EmployeeModel} from "../../../@core/domains/user.model";
+import {ListValueModel} from "../../../@core/domains/listvalue.model";
 
 @Component({
   selector: 'edit-employee',
@@ -19,23 +21,35 @@ export class EditEmployeeComponent implements OnInit{
               private authService: ApiAuth) {
   }
   ngOnInit() {
-    this.selectedProfession= this.employee.profession.id;//{"id":1,"listId":1,"listValue":"CHEF"};
     this.loadProfessionsData();
-    if(this.employee.startdate==null)
-      this.dateValue = new Date();
-    else
-      this.dateValue= this.employee.startdate;
-  }
 
+  }
   loadProfessionsData(): void {
     try {
       this.authService.getProfessionsList().subscribe(data => {
         this.listProfessionsValues = data.result;
+        this.selectedProfession=1;
+        this.loadEmployeeData();
       });
 
     }
     catch (e) {
       console.log(e);
+    }
+  }
+  loadEmployeeData(){
+    if(this.employee!=null) {
+      console.log(this.employee.profession.id);
+      this.selectedProfession = this.employee.profession.id;//{"id":1,"listId":1,"listValue":"CHEF"};
+      if (this.employee.startdate == null)
+        this.dateValue = new Date();
+      else
+        this.dateValue = this.employee.startdate;
+    }else {
+      this.employee=new EmployeeModel();
+      this.employee.profession=new ListValueModel();
+      this.employee.status="Active";
+      this.dateValue = new Date();
     }
   }
 

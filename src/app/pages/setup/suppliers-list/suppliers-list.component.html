@@ -1,0 +1,11 @@
+<p>
+  Suppliers List
+</p>
+
+<nb-card-body>
+  <ng2-smart-table [settings]="settings" [source]="source"
+                   (delete)="onDelete($event)"
+                   (create)="createRow($event)"
+                   (edit)="editRow($event)">
+  </ng2-smart-table>
+</nb-card-body>
