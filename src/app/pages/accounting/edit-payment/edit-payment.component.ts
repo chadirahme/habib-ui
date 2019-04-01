@@ -27,7 +27,7 @@ export class EditPaymentComponent implements OnInit {
     try {
       this.authService.getSuppliersList().subscribe(data => {
         this.supplierList = data;
-        this.selectedSupplier=1;
+        this.selectedSupplier=0;
         this.loadPaymentData();
       });
 
@@ -42,10 +42,12 @@ export class EditPaymentComponent implements OnInit {
       console.log(this.payment);
       this.payment.user=new UserModel();
       this.payment.createdtime=new Date();
-      this.selectedSupplier = this.payment.supplier.supplierid;//{"id":1,"listId":1,"listValue":"CHEF"};
-      if (this.payment.paymentdate == null)
+      //this.selectedSupplier = this.payment.supplier.supplierid;//{"id":1,"listId":1,"listValue":"CHEF"};
+      if (this.payment.paymentdate == null) {//add new
         this.dateValue = new Date();
+      }
       else {
+        this.selectedSupplier = this.payment.supplier.supplierid;
         this.dateValue =new Date(this.payment.paymentdate+"T00:00:00");
       }
     }else {
@@ -58,7 +60,11 @@ export class EditPaymentComponent implements OnInit {
   }
 
   submit() {
-    //this.name="sdsds";
+   if(this.selectedSupplier==0){
+     alert("Please select a Supplier !!");
+     return;
+   }
+
     this.payment.supplier.supplierid= this.selectedSupplier;
     this.payment.paymentdate=this.dateValue;
     this.payment.user.userid=localStorage.getItem('userid');

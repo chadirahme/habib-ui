@@ -10,7 +10,7 @@ export class ApiAuth {
         //this.baseUrl = baseUrl;
     }
     // baseUrl: string ='http://localhost:8091/api/';
-    baseUrl: string = 'http://localhost:8090/';
+    baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
 
     /**
      * check for expiration and if token is still existing or not

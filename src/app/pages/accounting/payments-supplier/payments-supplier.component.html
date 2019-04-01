@@ -1,11 +1,53 @@
-<p>
-   Supplier Payments
-</p>
+<!--<p>-->
+   <!--Supplier Payments-->
+<!--</p>-->
 
+<nb-card>
+    <nb-card-header>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="ddlSupplier">Supplier Payments</label>
+                    <select class="form-control" [(ngModel)]="selectedSupplier" id="ddlSupplier" #t (change)="callType($event)">
+                        <option value="0">--Select--</option>
+                        <option *ngFor="let item of supplierList" [ngValue]="item">
+                            {{item.suppliername}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6 first-column">
+                Total Payments: {{totalAmount | currency}}
+            </div>
+            <div class="col-sm-6 first-column">
+                Filter Total Payments: {{filterAmount | currency}}
+            </div>
+
+        </div>
+
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
 <nb-card-body>
-  <ng2-smart-table [settings]="settings" [source]="source"
+    <!--<input #searchme nbInput fullWidth status="info" type="text" placeholder="Filter Supplier Total Payments..." (keyup)="onSearch(searchme.value)">-->
+
+    <ng2-smart-table [settings]="settings" [source]="source" #grid
                    (delete)="onDelete($event)"
                    (create)="createRow($event)"
                    (edit)="editRow($event)">
   </ng2-smart-table>
+    <!--<nb-card-footer>By Wikipedia{{getTotalCost()}}</nb-card-footer>-->
+
 </nb-card-body>
+</nb-card>
+
+<nb-card>
+
+    <nb-card-footer>Total Payments: {{totalAmount | currency}}</nb-card-footer>
+</nb-card>

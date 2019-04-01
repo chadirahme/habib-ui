@@ -8,7 +8,7 @@
         <div class="form-group">
           <label for="ddlSupplier">Supplier</label>
           <select class="form-control" [(ngModel)]="selectedSupplier" id="ddlSupplier">
-            <!--<option value="0">--All--</option>-->
+            <option value="0">--Select--</option>
             <option *ngFor="let item of supplierList" [ngValue]="item.supplierid">
               {{item.suppliername}}
             </option>
@@ -35,7 +35,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="inputhourrate">Amount</label>
-          <input [(ngModel)]="payment.amount" type="email" class="form-control" id="inputhourrate" placeholder="Amount"
+          <input type="number" [(ngModel)]="payment.amount" class="form-control" id="inputhourrate" placeholder="Amount"
                  value="{{payment.amount}}">
         </div>
       </div>

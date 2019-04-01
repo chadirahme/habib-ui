@@ -29,3 +29,9 @@ ns69.domaincontrol.com
 ns70.domaincontrol.com
 
 point to ns1.linode.com
+
+GRANT ALL PRIVILEGES ON habib.* TO 'devuser'@'localhost' IDENTIFIED BY 'dev@password';
+
+
+https://stackblitz.com/edit/ng2-smart-table-column-cal-m9nxpg?file=src%2Fapp%2Fapp.component.ts
+http://lorenzofox3.github.io/smart-table-website/

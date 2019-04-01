@@ -6,6 +6,7 @@ import {PaymentsSupplierComponent} from "./payments-supplier/payments-supplier.c
 import {NgModule} from "@angular/core";
 import {ThemeModule} from "../../@theme/theme.module";
 import { EditPaymentComponent } from './edit-payment/edit-payment.component';
+import {CurrencyPipe} from "@angular/common";
 const COMPONENTS = [
     AccountingComponent,
     PaymentsSupplierComponent,
@@ -35,6 +36,7 @@ const MODULES = [
         EditPaymentComponent,
     ],
     providers: [
+        CurrencyPipe,
         //...SERVICES,
     ],
     entryComponents: [EditPaymentComponent]
