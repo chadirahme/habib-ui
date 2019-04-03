@@ -18,7 +18,8 @@ export class PaymentsSupplierComponent implements OnInit {
 
   payment: PaymentModel;
   source: LocalDataSource = new LocalDataSource();
-  alldata:any;
+  alldata:any[];
+  filterData:any[];
   totalAmount:number;
   filterAmount:number;
   supplierList: any[];
@@ -128,10 +129,11 @@ export class PaymentsSupplierComponent implements OnInit {
       this.filterAmount=0;
       return;
     }
-    const filterData = this.alldata.filter(pilot => pilot.supplier.supplierid===this.selectedSupplier.supplierid);
-    this.source.load(filterData);
+     this.filterData = this.alldata.filter(pilot => pilot.supplier.supplierid===this.selectedSupplier.supplierid);
+    this.source.load(this.filterData);
+    this.source.refresh();
     this.calTotalSupplierPayments(this.selectedSupplier.suppliername);
-    //this.source.refresh();
+
     //this.order.type=value;
   }
 
@@ -191,6 +193,7 @@ export class PaymentsSupplierComponent implements OnInit {
 
     this.totalAmount=sumAmount;
   }
+
   calTotalSupplierPayments(search){
     console.log("ssss "+search);
     if(search==null || search === ''){
@@ -215,8 +218,10 @@ export class PaymentsSupplierComponent implements OnInit {
     {
       this.authService.getPaymentsList().subscribe(data => {
         this.source.load(data);
+        //this.alldata=null;
         this.alldata=data;
         this.calTotalPayments();
+        this.callType("");
       });
 
     }
@@ -234,10 +239,36 @@ export class PaymentsSupplierComponent implements OnInit {
       },
     }).onClose.subscribe (name => name && this.checkResult(name));
   }
-  onDelete(event){
-    console.log('event: ', event.data);
-  }
 
+  onDelete(event) {
+    //console.log("filterData1>>" + this.alldata.length);
+    if (window.confirm('Are you sure you want to delete this payment?')) {
+      this.authService.deletePayment(event.data).subscribe(data => {
+        //console.log(data);
+       // alert("Payment is deleted..");
+        this.loadData();
+
+        //this.alldata.pop();
+
+       // this.filterData = this.alldata.filter(pilot => pilot.supplier.supplierid===this.selectedSupplier.supplierid);
+            // .subscribe((data) => {
+            //   this.filterData.push(data);
+            // });
+
+       // console.log("filterData2>>" + this.filterData.length);
+        //this.source=new LocalDataSource(this.filterData);
+        //this.source.load(filterData);
+        //this.source.refresh();
+        //this.callType("");
+      });
+
+      console.log("filterData3>>" + this.alldata.length);
+    }
+
+    else {
+      // event.confirm.reject();
+    }
+  }
 
   createRow(event: any) {
     this.payment=new PaymentModel();
@@ -257,6 +288,7 @@ export class PaymentsSupplierComponent implements OnInit {
   checkResult(msg){
     console.log(msg);
     this.loadData();
+    console.log(this.selectedSupplier);
+    this.callType("");
   }
-
 }

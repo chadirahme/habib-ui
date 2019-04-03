@@ -89,16 +89,28 @@ export class SuppliersListComponent implements OnInit {
 
   onDelete(event) {
     if (window.confirm('Are you sure you want to delete?')) {
-      this.authService.deleteSupplier(event.data).subscribe(data => {
-        console.log(data);
-        //alert("Employee saved..");
-        this.loadData();
-      });
+      try {
+        this.authService.deleteSupplier(event.data).subscribe(data => {
+          console.log(data);
+          if(data.status==424){
+            alert("You can't delete this Supplier. Some payments link to him!!");
+            return;
+          }
+          alert("Supplier is deleted..");
+          this.loadData();
+        });
 
-    } else {
-     // event.confirm.reject();
+      }
+      catch (e) {
+        console.log(e);
+        alert("Error at deleting process!! ");
+      }
     }
-  }
+    else
+      {
+        // event.confirm.reject();
+      }
+    }
 
   onDeleteConfirm(event) {
     console.log("Delete Event In Console")

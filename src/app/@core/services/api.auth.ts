@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ApiResponse} from "../domains/api.response";
-import {Observable} from "rxjs";
+import {Observable,throwError} from "rxjs";
 import {ListValueModel} from "../domains/listvalue.model";
+import {retry,catchError} from "rxjs/internal/operators";
 @Injectable()
 export class ApiAuth {
 
@@ -10,7 +11,8 @@ export class ApiAuth {
         //this.baseUrl = baseUrl;
     }
     // baseUrl: string ='http://localhost:8091/api/';
-    baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
+    //baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
+     baseUrl: string = 'http://localhost:8090/';
 
     /**
      * check for expiration and if token is still existing or not
@@ -52,7 +54,9 @@ export class ApiAuth {
         return this.http.post<any>(this.baseUrl+'rest-suppliers/save/',supplier);
     }
     deleteSupplier(supplier: any): Observable<any> {
-        return this.http.post<any>(this.baseUrl+'rest-suppliers/delete/',supplier);
+        return this.http.post<any>(this.baseUrl+'rest-suppliers/delete/',supplier)
+            .pipe(retry(1),
+                catchError(this.handleError));
     }
 
     //rest-payments
@@ -61,6 +65,24 @@ export class ApiAuth {
     }
     savePayment(payment: any): Observable<any> {
         return this.http.post<any>(this.baseUrl+'rest-payments/save/',payment);
+    }
+    deletePayment(payment: any): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'rest-payments/delete/',payment)
+            .pipe(retry(1),
+                catchError(this.handleError));
+    }
+
+    handleError(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
     }
 
 }
