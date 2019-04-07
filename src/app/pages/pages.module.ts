@@ -6,6 +6,10 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import {VendorsListComponent} from "./setup/vendors-list/vendors-list.component";
+import {ChartModule} from "angular2-chartjs";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
+import {NbBadgeModule} from "@nebular/theme";
+import {NgxEchartsModule} from "ngx-echarts";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -17,6 +21,10 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     MiscellaneousModule,
+    // ChartModule,
+    // NgxEchartsModule,
+    // NgxChartsModule,
+    NbBadgeModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

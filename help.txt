@@ -32,6 +32,20 @@ point to ns1.linode.com
 
 GRANT ALL PRIVILEGES ON habib.* TO 'devuser'@'localhost' IDENTIFIED BY 'dev@password';
 
+ng build --prod
+/Users/chadirahme/IdeaProjects/habib-ui/dist/
+/opt/tomcat/habib-ui/ROOT
 
 https://stackblitz.com/edit/ng2-smart-table-column-cal-m9nxpg?file=src%2Fapp%2Fapp.component.ts
 http://lorenzofox3.github.io/smart-table-website/
+
+charts
+npm install angular2-chartjs
+
+npm i @swimlane/ngx-charts --save
+npm i ngx-echarts
+
+npm install echarts --save
+
+npm install @types/echarts -D
+npm install --save-dev @types/node
