@@ -20,9 +20,11 @@ import {VendorsListComponent} from "./pages/setup/vendors-list/vendors-list.comp
 import {AuthGuard} from "./auth-guard.service";
 import {NbPasswordAuthStrategy, NbAuthModule} from "@nebular/auth";
 import { LoginComponent } from './login/login.component';
+//import {FileSelectDirective} from "ng2-file-upload";
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

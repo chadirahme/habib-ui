@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {PaymentModel, UserModel} from "../../../@core/domains/user.model";
 import {ApiAuth} from "../../../@core/services/api.auth";
 import {NbDialogRef} from "@nebular/theme";
+//import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'edit-payment',

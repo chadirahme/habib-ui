@@ -40,12 +40,22 @@ https://stackblitz.com/edit/ng2-smart-table-column-cal-m9nxpg?file=src%2Fapp%2Fa
 http://lorenzofox3.github.io/smart-table-website/
 
 charts
-npm install angular2-chartjs
 
 npm i @swimlane/ngx-charts --save
-npm i ngx-echarts
-
+npm install angular2-chartjs --save
+npm i ngx-echarts --save
+npm install chart.js --save
 npm install echarts --save
 
 npm install @types/echarts -D
 npm install --save-dev @types/node
+
+npm audit fix
+
+npm i @types/node@10.5.7 --save-dev
+
+
+change "@types/echarts" version to 4.1.0
+
+upload file
+https://valor-software.com/ng2-file-upload/
