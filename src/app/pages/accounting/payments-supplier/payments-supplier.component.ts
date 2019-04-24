@@ -5,6 +5,7 @@ import {ApiAuth} from "../../../@core/services/api.auth";
 import {EditPaymentComponent} from "../edit-payment/edit-payment.component";
 import {PaymentModel, SupplierModel} from "../../../@core/domains/user.model";
 import {CurrencyPipe} from "@angular/common";
+import {ButtonRenderComponent} from "./button.render.component";
 
 @Component({
   selector: 'payments-supplier',
@@ -27,6 +28,7 @@ export class PaymentsSupplierComponent implements OnInit {
 
   settings = {
     mode: 'external',
+    hideSubHeader: false,
     pager: {
       display: true,
       perPage: 15,
@@ -91,6 +93,28 @@ export class PaymentsSupplierComponent implements OnInit {
         title: 'Description',
         type: 'string',
       },
+      // filepath: {
+      //   title: 'Attach',
+      //   type: 'string',
+      //   valuePrepareFunction: (filepath) => {
+      //     return filepath==null?"":"View";
+      //   }
+      // },
+      filename: {
+        title: 'Attach',
+        type: 'custom',
+        renderComponent: ButtonRenderComponent,
+        defaultValue: 'View',
+        valuePrepareFunction: (filepath) => {
+          return filepath==null?"NA":"View";
+        },
+        onComponentInitFunction:(instance)=> {
+          instance.save.subscribe(row => {
+           // alert(`${row.paymentid} saved!`)
+            this.onExport(row.filename);
+          });
+        }
+      },
     },
     actions: {
       position: 'right',
@@ -100,6 +124,11 @@ export class PaymentsSupplierComponent implements OnInit {
       columnTitle: '',
     },
   };
+
+  private handleUpdatedUser(updatedUserData: any) {
+    // TODO is it possible to update only single row with update result instead of full table?
+    //this.usersSource.refresh();
+  }
 
   constructor(private authService: ApiAuth,private dialogService: NbDialogService,private cp: CurrencyPipe) { }
 
@@ -276,6 +305,7 @@ export class PaymentsSupplierComponent implements OnInit {
     this.payment.paidby="Visa Card";
     this.payment.supplier=new SupplierModel();
     this.payment.createdtime=new Date();
+    this.payment.description="";
     // console.log('on add event: ', event);
     this.dialogService.open(EditPaymentComponent, {
       context: {
@@ -290,5 +320,40 @@ export class PaymentsSupplierComponent implements OnInit {
     this.loadData();
     console.log(this.selectedSupplier);
     this.callType("");
+  }
+
+  onExport(filename: string) {
+    try {
+      console.log(filename);
+      //return ;
+      this.authService.getFiles(filename).subscribe(data => {
+        console.log('done');
+        let blob = new Blob([data], {type: "application/octet-stream"});
+        let fileName: string = filename; //"myfile.png" //+ this.request.output;
+        let dataType = data.type;
+        console.log(dataType);
+
+        let binaryData = [];
+        binaryData.push(data);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+        if (fileName)
+          downloadLink.setAttribute('download', fileName);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+
+        // window.navigator.msSaveBlob(blob, fileName);
+
+
+        //const blob1 = new Blob([data], { type: 'text/csv' });
+        //const url= window.URL.createObjectURL(blob1);
+        //window.open(url);
+        //FileSaver.saveAs(blob1, 'data.csv');
+      });
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }

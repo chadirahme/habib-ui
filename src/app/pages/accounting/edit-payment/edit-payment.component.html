@@ -20,10 +20,10 @@
     <div class="form-group">
     <label for="inputStatus">Paid By</label>
     <select class="form-control" id="inputStatus" [(ngModel)]="payment.paidby">
-    <option>Visa Card</option>
-    <option>Master Card</option>
-    <option>Cash</option>
-      <option>Cheque</option>
+    <option >Visa Card</option>
+    <option >Master Card</option>
+    <option >Cash</option>
+      <option >Cheque</option>
     </select>
     </div>
     </div>
@@ -42,7 +42,8 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="inputStartDate">Payment Date</label>
-          <input  [nbDatepicker]="datepicker" id="inputStartDate" [(ngModel)]="dateValue">
+          <input  [nbDatepicker]="datepicker" id="inputStartDate" [(ngModel)]="dateValue"
+                  date-format="yyyy-MM-dd" date-only>
           <nb-datepicker #datepicker ></nb-datepicker>
         </div>
       </div>
@@ -59,6 +60,15 @@
         </div>
       </div>
     </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+      <label for="singleFile">Upload file</label>
+      <input id="singleFile" type="file" (change)="selectFile($event)"/>
+              </div>
+          </div>
+      </div>
 
     <!--<div class="row">-->
       <!--<div class="col-sm-12">-->

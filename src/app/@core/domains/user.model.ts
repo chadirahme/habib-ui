@@ -37,6 +37,8 @@ export class PaymentModel {
     paidby:string;
     userid:number;
     createdtime:any;
+    filename:string;
+    filepath:string;
     supplier:SupplierModel;
     user:UserModel;
 }

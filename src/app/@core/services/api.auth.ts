@@ -4,6 +4,9 @@ import {ApiResponse} from "../domains/api.response";
 import {Observable,throwError} from "rxjs";
 import {ListValueModel} from "../domains/listvalue.model";
 import {retry,catchError} from "rxjs/internal/operators";
+import {HttpHeaders} from "@angular/common/http";
+import {HttpParams} from "@angular/common/http";
+import {PaymentModel} from "../domains/user.model";
 @Injectable()
 export class ApiAuth {
 
@@ -11,7 +14,7 @@ export class ApiAuth {
         //this.baseUrl = baseUrl;
     }
     // baseUrl: string ='http://localhost:8091/api/';
-      //  baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
+       // baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
         baseUrl: string = 'http://localhost:8090/';
 
     /**
@@ -66,6 +69,28 @@ export class ApiAuth {
     savePayment(payment: any): Observable<any> {
         return this.http.post<any>(this.baseUrl+'rest-payments/save/',payment);
     }
+    savePaymentWithAttach(file: File,payment: PaymentModel): Observable<any> {
+        let headers = new HttpHeaders();
+        //this is the important step. You need to set content type as null
+        headers.set('Content-Type', null);
+        headers.set('Accept', "multipart/form-data");
+        let params = new HttpParams();
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+
+        formData.append('paymentid', payment.paymentid+"");
+        formData.append('supplierid', payment.supplier.supplierid+"");
+        formData.append('paymentdate', payment.paymentdate);
+        formData.append('userid', payment.user.userid);
+        formData.append('amount', payment.amount+"");
+        formData.append('description', payment.description);
+        formData.append('paidby', payment.paidby);
+
+
+        return this.http.post<any>(this.baseUrl + 'rest-payments/savePaymentWithAttach/', formData, { params, headers });
+        //return this.http.post<any>(this.baseUrl+'rest-payments/save/',payment);
+    }
+
     deletePayment(payment: any): Observable<any> {
         return this.http.post<any>(this.baseUrl+'rest-payments/delete/',payment)
             .pipe(retry(1),
@@ -87,6 +112,10 @@ export class ApiAuth {
 
     getPaymentsYearList(): Observable<any[]> {
         return this.http.get<any[]>(this.baseUrl+'rest-payments/allyear');
+    }
+
+    getFiles(filename: string): Observable<any> {
+        return this.http.get(this.baseUrl+ 'rest-payments/files/'+filename ,{responseType: 'blob' as 'json'});
     }
 
 }

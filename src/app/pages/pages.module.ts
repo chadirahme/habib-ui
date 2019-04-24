@@ -10,9 +10,11 @@ import {ChartModule} from "angular2-chartjs";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import {NbBadgeModule} from "@nebular/theme";
 import {NgxEchartsModule} from "ngx-echarts";
+import {ButtonRenderComponent} from "./accounting/payments-supplier/button.render.component";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
+  ButtonRenderComponent
 ];
 
 @NgModule({
@@ -29,7 +31,7 @@ const PAGES_COMPONENTS = [
   declarations: [
     ...PAGES_COMPONENTS,
   ],
-  //entryComponents: [VendorsListComponent]
+  entryComponents: [ButtonRenderComponent]
 })
 export class PagesModule {
 }
