@@ -20,6 +20,7 @@ import {VendorsListComponent} from "./pages/setup/vendors-list/vendors-list.comp
 import {AuthGuard} from "./auth-guard.service";
 import {NbPasswordAuthStrategy, NbAuthModule} from "@nebular/auth";
 import { LoginComponent } from './login/login.component';
+import {PffComponent} from "./pff/pff.component";
 //import {FileSelectDirective} from "ng2-file-upload";
 
 @NgModule({
@@ -36,30 +37,30 @@ import { LoginComponent } from './login/login.component';
     CoreModule.forRoot(),
     //NbWindowModule.forRoot(),
 
-    NbAuthModule.forRoot({
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'email',
-          baseEndpoint: 'http://localhost:8090/',
-          login: {
-            endpoint: 'rest-employees/getLoginUser',
-            method: 'get',
-          },
-        }),
-      ],
-      forms: {
-        login: {
-          redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
-          strategy: 'email',  // strategy id key.
-          rememberMe: false,   // whether to show or not the `rememberMe` checkbox
-          showMessages: {     // show/not show success/error messages
-            success: true,
-            error: true,
-          },
-          //socialLinks: socialLinks, // social links at the bottom of a page
-        },
-      },
-    }),
+    // NbAuthModule.forRoot({
+    //   strategies: [
+    //     NbPasswordAuthStrategy.setup({
+    //       name: 'email',
+    //       baseEndpoint: 'http://localhost:8090/',
+    //       login: {
+    //         endpoint: 'rest-employees/getLoginUser',
+    //         method: 'get',
+    //       },
+    //     }),
+    //   ],
+    //   forms: {
+    //     login: {
+    //       redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
+    //       strategy: 'email',  // strategy id key.
+    //       rememberMe: false,   // whether to show or not the `rememberMe` checkbox
+    //       showMessages: {     // show/not show success/error messages
+    //         success: true,
+    //         error: true,
+    //       },
+    //       //socialLinks: socialLinks, // social links at the bottom of a page
+    //     },
+    //   },
+    // }),
 
   ],
   bootstrap: [AppComponent],

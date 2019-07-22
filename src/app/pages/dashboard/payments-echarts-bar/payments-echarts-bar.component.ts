@@ -210,6 +210,7 @@ export class PaymentsEchartsBarComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if(this.themeSubscription!=null)
     this.themeSubscription.unsubscribe();
   }
 }

@@ -5,6 +5,7 @@ import {SetupComponent} from "./setup.component";
 import {VendorsListComponent} from "./vendors-list/vendors-list.component";
 import {ProfessionsListComponent} from "./professions-list/professions-list.component";
 import {SuppliersListComponent} from "./suppliers-list/suppliers-list.component";
+import {PffitemListComponent} from "./pffitem-list/pffitem-list.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
             {
                 path: 'professions-list',
                 component:ProfessionsListComponent,
+            },
+            {
+                path: 'pffitem-list',
+                component:PffitemListComponent,
             }
         ],
     }

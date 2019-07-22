@@ -7,23 +7,24 @@ import {retry,catchError} from "rxjs/internal/operators";
 import {HttpHeaders} from "@angular/common/http";
 import {HttpParams} from "@angular/common/http";
 import {PaymentModel} from "../domains/user.model";
+import {Item} from "../domains/pff.model";
 @Injectable()
 export class ApiAuth {
 
     constructor(private http: HttpClient) {
         //this.baseUrl = baseUrl;
     }
-    // baseUrl: string ='http://localhost:8091/api/';
-       // baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
-        baseUrl: string = 'http://localhost:8090/';
+    baseUrl: string ='http://localhost:8091/api/';
+        //baseUrl: string = 'http://api.mainehabib.com/'; //'http://localhost:8090/'; //'http://139.162.169.243/';
+       // baseUrl: string = 'http://localhost:8090/';
 
     /**
      * check for expiration and if token is still existing or not
      * @return {boolean}
      */
     isAuthenticated(): boolean {
-        return localStorage.getItem('token') != null && !this.isTokenExpired();
-    }
+    return localStorage.getItem('token') != null && !this.isTokenExpired();
+}
     // simulate jwt token is valid
     // https://github.com/theo4u/angular4-auth/blob/master/src/app/helpers/jwt-helper.ts
     isTokenExpired(): boolean {
@@ -118,4 +119,19 @@ export class ApiAuth {
         return this.http.get(this.baseUrl+ 'rest-payments/files/'+filename ,{responseType: 'blob' as 'json'});
     }
 
+    //pff
+    getPffItemList(): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl+'pff-item/all?status=A');
+    }
+    getAllPffItemList(): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl+'pff-item/all?status');
+    }
+
+    savePffItem(item: Item): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'pff-item/save/',item);
+    }
+
+    savePffInvoice(invoice: any): Observable<any> {
+        return this.http.post<any>(this.baseUrl+'pff-item/savePffInvoice/',invoice);
+    }
 }

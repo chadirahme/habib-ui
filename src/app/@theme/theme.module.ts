@@ -64,6 +64,9 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import {PffLayoutComponent} from "./layouts/pff/pff.layout";
+import {PffheaderComponent} from "./components/header/pffheader.component";
+import {AppRoutingModule} from "../app-routing.module";
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -113,6 +116,8 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  PffLayoutComponent,
+  PffheaderComponent
 ];
 
 const ENTRY_COMPONENTS = [

@@ -27,6 +27,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Suppliers List',
         link: '/pages/setup/suppliers-list',
       },
+      {
+        title: 'PFF Item List',
+        link: '/pages/setup/pffitem-list',
+      },
+
     ]
   },
 
@@ -41,6 +46,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Suppliers Payments',
         link: '/pages/accounting/payments-supplier',
+      },
+
+      {
+        title: 'Sales',
+        link: '/pages/pff/sales',
       },
     ]
   },

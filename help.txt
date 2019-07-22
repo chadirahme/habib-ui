@@ -39,6 +39,7 @@ ng build --prod
 https://stackblitz.com/edit/ng2-smart-table-column-cal-m9nxpg?file=src%2Fapp%2Fapp.component.ts
 http://lorenzofox3.github.io/smart-table-website/
 
+ng g c pffitem-list
 charts
 
 npm i @swimlane/ngx-charts --save

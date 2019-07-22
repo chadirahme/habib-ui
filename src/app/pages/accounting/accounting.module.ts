@@ -39,6 +39,6 @@ const MODULES = [
         CurrencyPipe,
         //...SERVICES,
     ],
-    entryComponents: [EditPaymentComponent]
+    entryComponents: []
 })
 export class AccountingModule { }

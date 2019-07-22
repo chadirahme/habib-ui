@@ -1,0 +1,118 @@
+<pff-header></pff-header>
+
+  <!--<div class="container-fluid">-->
+
+    <!--<div>-->
+      <!--&lt;!&ndash;<h1 style="text-align: center;" class="mg-bottom">Angular + Bootstrap ngFor 3 columns in row</h1>&ndash;&gt;-->
+      <!--<div class="row mg-bottom" *ngFor="let row of newArray">-->
+        <!--<ng-container *ngFor="let item of row?.items">-->
+          <!--<sellitem [item]="item" (valueChange)='displayCounter($event)'></sellitem>-->
+          <!--&lt;!&ndash;<div class="col-sm-3 col-xs-12">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="panel panel-default text-center">&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                <!--&lt;!&ndash;<h1>{{item.itemname}}</h1>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                <!--&lt;!&ndash;<p><strong>Box</strong> 350 g</p>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="panel-footer">&ndash;&gt;-->
+                <!--&lt;!&ndash;<h3>$7</h3>&ndash;&gt;-->
+                <!--&lt;!&ndash;<h4>per Box</h4>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button class="btn btn-lg" (click) ="sum('Hummus')">ADD</button>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</ng-container>-->
+
+
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+<!--<div class="row">-->
+  <!--<div class="col-sm-3 col-xs-12 b">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12 cardTotal">-->
+        <!--{{resultheading}}-->
+        <!--<h4 class="cardTotalh4"> Total: {{result}}</h4>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+<!--</div>-->
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-9">
+
+        <div class="row mg-bottom" *ngFor="let row of newArray">
+          <ng-container *ngFor="let item of row?.items">
+            <sellitem [item]="item" (valueChange)='updateInvoice($event)' (cancelItem)='removeInvoice($event)' ></sellitem>
+          </ng-container>
+      </div>
+
+
+
+  </div>
+
+    <div class="col-sm-3 cardTotal border">
+        {{selectedItem}}
+        <h4 class="cardTotalh4"> Total: $ {{total}}</h4>
+      <div>
+
+        <textarea shape="round" fullWidth [(ngModel)]="pffInvoice.notes" type="text"
+                  class="form-control" id="inputdescription" placeholder="Notes"
+                  value="{{pffInvoice.notes}}"></textarea>
+
+      </div>
+
+        <button type="button" (click) ="saveInvoice('Cash')"
+                             class="btn btn-primary btn-block">
+      CASH</button>
+
+        <button type="button" (click) ="saveInvoice('Credit')"
+                class="btn btn-success btn-block">
+          CREDIT</button>
+
+
+      <button type="button" (click) ="refreshPage()"
+              class="btn btn-danger btn-block">
+        CLEAR</button>
+    </div>
+
+</div>
+</div>
+
+    <!--<div *ngFor="let item of itemsList; let i = index">-->
+      <!--<div *ngIf="i % 3 == 0" class="row">-->
+      <!--<div class="col-sm-3 col-xs-12">-->
+        <!--<div class="panel panel-default text-center">-->
+          <!--<div class="panel-heading">-->
+            <!--<h1>{{item.itemname}}</h1>-->
+          <!--</div>-->
+          <!--<div class="panel-body">-->
+            <!--<p><strong>Box</strong> 350 g</p>-->
+          <!--</div>-->
+          <!--<div class="panel-footer">-->
+            <!--<h3>$7</h3>-->
+            <!--<h4>per Box</h4>-->
+            <!--<button class="btn btn-lg" (click) ="sum('Hummus')">ADD</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-sm-3 col-xs-12 b">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-12 cardTotal">-->
+            <!--{{resultheading}}-->
+            <!--<h4 class="cardTotalh4"> Total: {{result}}</h4>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--<label *ngFor="let item of itemsList">-->
+      <!--{{item.itemname}}-->
+    <!--</label>-->
+      <!---->
+    <!--</div>-->

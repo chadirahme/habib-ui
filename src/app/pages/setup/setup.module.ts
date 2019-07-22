@@ -10,6 +10,7 @@ import {NbDialogModule, NbWindowModule, NbDatepickerModule} from "@nebular/theme
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
 import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
+import { PffitemListComponent } from './pffitem-list/pffitem-list.component';
 
 const COMPONENTS = [
    SetupComponent,
@@ -41,6 +42,7 @@ const MODULES = [
         EditEmployeeComponent,
         SuppliersListComponent,
         EditSupplierComponent,
+        PffitemListComponent,
 
     ],
     providers: [
